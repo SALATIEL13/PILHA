@@ -1,0 +1,75 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct historico{
+  char adress[30];
+  struct historico *prox;
+  };
+  
+  
+typedef struct historico His;
+His *topo;
+
+void push(){
+His *c=(His*)malloc(sizeof(His));
+  
+  printf("Site:");
+  scanf("%s",c->adress);
+  
+  c->prox=topo;  //o proximo de c será o topo.
+  topo=c;       //o agora é c;
+}
+
+
+void pop(){
+  if(topo==NULL){
+printf("Pilha vazia");
+}else
+    
+    topo=topo->prox; //topo aponta para o proximo perdendo a referencia;
+  }
+  
+  
+void listar(His *c){
+if(c!=NULL){
+  printf("\nSITE: %s",c->adress);
+  listar(c->prox); // imprime usando reursão;
+  }
+}
+
+
+int main() {
+  push();
+   push();
+    push();
+     push();
+      push();
+       push();
+        push();
+         push();
+          push();
+           push();
+           
+  His *aux=topo;//cria um aux para topo (para topo não ser perdido
+  listar(aux);
+  
+  
+int resp;  
+
+while(topo!=NULL){
+  printf("\n\nREMOVER? ");
+printf("\n\n|1-SIM|   |2-NAO|    -> " );
+scanf("%d",&resp);
+if (resp==1){
+	pop();
+	His *aux=topo;
+  listar(aux);
+} if(topo==NULL){
+	printf("\n\nPILHA TOTALMENTE VAZIA");
+}
+}
+if (resp==2){
+}
+
+  return 0;
+}
